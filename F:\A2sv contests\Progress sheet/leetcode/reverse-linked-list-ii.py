@@ -6,17 +6,17 @@
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
         dummy = ListNode(0, head)
-        leftprev, cur = dummy, head
-        for i in range(left-1):
-            leftprev, cur = cur, cur.next
+        prev = dummy
 
-        prev = None
-        for i in range(right-left + 1):
-            tempNext = cur.next
-            cur.next = prev
-            prev,cur = cur, tempNext
+        for _ in range(left - 1):
+            prev = prev.next
 
-            
-        leftprev.next.next = cur
-        leftprev.next = prev
+        # Reverse 
+        cur = prev.next
+        for _ in range(right - left):
+            temp_next = cur.next
+            cur.next = temp_next.next
+            temp_next.next = prev.next
+            prev.next = temp_next
+
         return dummy.next
