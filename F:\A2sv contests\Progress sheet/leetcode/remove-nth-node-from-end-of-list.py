@@ -8,20 +8,20 @@ class Solution:
         dummy = ListNode(0)
         dummy.next = head
 
-        # Calculate the length of the list
+        #length 
         length = 0
         cur = head
         while cur:
             length += 1
             cur = cur.next
 
-        # Find the node before the one to be removed
+        # node before 
         target_idx = length - n
         cur = dummy
         for _ in range(target_idx):
             cur = cur.next
 
-        # Remove the target node
+        # reconnect
         cur.next = cur.next.next
 
         return dummy.next
